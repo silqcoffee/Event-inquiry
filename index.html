@@ -785,5 +785,34 @@
     a.click();
   }
 </script>
+  <script>
+
+document.getElementById("inquiryForm")
+.addEventListener("submit", async function(e) {
+
+  e.preventDefault();
+
+  const formData = Object.fromEntries(new FormData(this).entries());
+
+  try {
+
+    await fetch("https://script.google.com/macros/s/AKfycbzXBHpdheMiy5B4YEitE-6ChmOikjbrXS8WU3yWuOcMOvv7w45y7RifrlXrMXU-oZHU/exec", {
+      method: "POST",
+      body: JSON.stringify(formData)
+    });
+
+    alert("Inquiry submitted successfully!");
+
+    this.reset();
+
+  } catch(err) {
+
+    alert("Something went wrong.");
+
+  }
+
+});
+
+</script>
 </body>
 </html>
