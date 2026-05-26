@@ -518,43 +518,10 @@
             </div>
           </div>
         </div>
-        <div class="field-row full" id="attendeePayRow" style="display:none;">
-          <div class="field">
-            <label class="field-label">If paid by attendees — how will payment be collected?</label>
-            <div class="tile-group">
-              <label><input type="radio" name="attendeePayMethod" value="Cash at event" /><span class="tile">Cash at event</span></label>
-              <label><input type="radio" name="attendeePayMethod" value="Card / tap to pay" /><span class="tile">Card / Tap to Pay</span></label>
-              <label><input type="radio" name="attendeePayMethod" value="Pre-paid tickets" /><span class="tile">Pre-paid tickets</span></label>
-              <label><input type="radio" name="attendeePayMethod" value="Not sure yet" /><span class="tile">Not sure yet</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="field-row full">
-          <div class="field">
-            <label class="field-label">Budget Range</label>
-            <select name="budget">
-              <option value="">Select a range</option>
-              <option>Under $1,000</option>
-              <option>$1,000 – $1,500</option>
-              <option>$1,500 – $2,000</option>
-              <option>$2,000 – $3,000</option>
-              <option>$3,000+</option>
-              <option>Flexible / Open</option>
-            </select>
-          </div>
-        </div>
-        <div class="field-row full">
-          <div class="field">
-            <label class="field-label">Billing contact name (if different from above)</label>
-            <input type="text" name="billingContact" placeholder="Full name of billing contact" />
-          </div>
-        </div>
-        <div class="field-row full">
-          <div class="field">
-            <label class="field-label">Billing email (if different from above)</label>
-            <input type="email" name="billingEmail" placeholder="billing@email.com" />
-          </div>
-        </div>
+
+
+
+
       </div>
     </div>
 
@@ -576,35 +543,8 @@
             </div>
           </div>
         </div>
-        <div class="field-row full">
-          <div class="field">
-            <label class="field-label">Classic Drinks (select all desired)</label>
-            <div class="tile-group">
-              <label><input type="checkbox" name="menuClassic" value="Americano" /><span class="tile">Americano</span></label>
-              <label><input type="checkbox" name="menuClassic" value="Vanilla Latte" /><span class="tile">Vanilla Latte</span></label>
-              <label><input type="checkbox" name="menuClassic" value="Caramel Latte" /><span class="tile">Caramel Latte</span></label>
-              <label><input type="checkbox" name="menuClassic" value="Chocolate Latte" /><span class="tile">Chocolate Latte</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label class="field-label">Milk Preference</label>
-            <div class="tile-group">
-              <label><input type="radio" name="milkPref" value="Oat Milk" /><span class="tile">Oat Milk</span></label>
-              <label><input type="radio" name="milkPref" value="Whole Milk" /><span class="tile">Whole Milk</span></label>
-              <label><input type="radio" name="milkPref" value="Both" /><span class="tile">Both</span></label>
-            </div>
-          </div>
-          <div class="field">
-            <label class="field-label">Hot, Iced, or Both?</label>
-            <div class="tile-group">
-              <label><input type="radio" name="tempPref" value="Hot" /><span class="tile">Hot</span></label>
-              <label><input type="radio" name="tempPref" value="Iced" /><span class="tile">Iced</span></label>
-              <label><input type="radio" name="tempPref" value="Both" /><span class="tile">Both</span></label>
-            </div>
-          </div>
-        </div>
+
+
         <div class="field-row full">
           <div class="field">
             <label class="field-label">Optional Add-Ons (select all that interest you)</label>
@@ -717,13 +657,7 @@
     });
   });
 
-  // Show attendee payment method if attendees are paying
-  document.querySelectorAll('input[name="paymentBy"]').forEach(r => {
-    r.addEventListener('change', () => {
-      document.getElementById('attendeePayRow').style.display =
-        r.value === 'Attendee Paid' ? 'grid' : 'none';
-    });
-  });
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -738,7 +672,7 @@
     }
 
     const fd = new FormData(form);
-    const multiFields = ['experience','menuClassic','addons'];
+    const multiFields = ['experience','addons'];
     const data = {};
     multiFields.forEach(f => data[f] = []);
 
@@ -768,10 +702,10 @@
       ['venueName','Venue'],['venueAddress','Venue Address'],
       ['indoorOutdoor','Indoor/Outdoor'],['powerAccess','Power Access'],
       ['setupTime','Setup Time'],['venueNotes','Venue Notes'],
-      ['paymentBy','Payment By'],['attendeePayMethod','Attendee Pay Method'],
-      ['budget','Budget'],['billingContact','Billing Contact'],['billingEmail','Billing Email'],
-      ['experience','Experience'],['menuClassic','Classic Drinks'],
-      ['milkPref','Milk Pref'],['tempPref','Hot/Iced'],
+      ['paymentBy','Payment By'],
+      
+      ['experience','Experience'],
+      
       ['addons','Add-Ons'],['menuNotes','Menu Notes'],
       ['referralSource','Referral'],['returningClient','Returning Client'],
       ['notes','Notes'],
