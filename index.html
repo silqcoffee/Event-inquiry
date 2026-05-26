@@ -349,7 +349,7 @@
 </header>
 
 <div class="form-wrapper">
-  <form id="inquiryForm" onsubmit="handleSubmit(event)" novalidate>
+  <form id="inquiryForm" novalidate>
 
     <!-- 1. Contact Information -->
     <div class="section-card">
@@ -659,65 +659,7 @@
 
 
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
 
-    const acks = ['ack1','ack2','ack3','ack4'];
-    for (const ack of acks) {
-      if (!form[ack].checked) {
-        alert('Please check all acknowledgements before submitting.');
-        return;
-      }
-    }
-
-    const fd = new FormData(form);
-    const multiFields = ['experience','addons'];
-    const data = {};
-    multiFields.forEach(f => data[f] = []);
-
-    for (const [key, val] of fd.entries()) {
-      if (multiFields.includes(key)) data[key].push(val);
-      else data[key] = val;
-    }
-    multiFields.forEach(f => { data[f] = data[f].join('; '); });
-    data['submittedAt'] = new Date().toLocaleString();
-
-    downloadCSV(data);
-
-    document.querySelector('.submit-btn').style.display = 'none';
-    document.getElementById('successBanner').style.display = 'block';
-    form.reset();
-  }
-
-  function downloadCSV(data) {
-    const cols = [
-      ['submittedAt','Submitted At'],
-      ['firstName','First Name'],['lastName','Last Name'],
-      ['email','Email'],['phone','Phone'],
-      ['contactRole','Contact Role'],['organization','Organization'],
-      ['eventType','Event Type'],['eventName','Event Name'],
-      ['eventDate','Event Date'],['guestCount','Guest Count'],
-      ['startTime','Start Time'],['endTime','End Time'],['duration','Duration'],
-      ['venueName','Venue'],['venueAddress','Venue Address'],
-      ['indoorOutdoor','Indoor/Outdoor'],['powerAccess','Power Access'],
-      ['setupTime','Setup Time'],['venueNotes','Venue Notes'],
-      ['paymentBy','Payment By'],
-      
-      ['experience','Experience'],
-      
-      ['addons','Add-Ons'],['menuNotes','Menu Notes'],
-      ['referralSource','Referral'],['returningClient','Returning Client'],
-      ['notes','Notes'],
-    ];
-    const headers = cols.map(c => `"${c[1]}"`).join(',');
-    const row = cols.map(c => `"${(data[c[0]]||'').replace(/"/g,'""')}"`).join(',');
-    const blob = new Blob([headers+'\n'+row+'\n'], {type:'text/csv'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `silq_inquiry_${new Date().toISOString().slice(0,10)}.csv`;
-    a.click();
-  }
 </script>
   <script>
 
