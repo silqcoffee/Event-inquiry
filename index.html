@@ -38,10 +38,7 @@
       border-bottom: 3px solid var(--gold);
     }
 
-    .logo-wrap {
-      margin-bottom: 16px;
-    }
-
+    .logo-wrap { margin-bottom: 16px; }
     .logo-wrap svg { width: 68px; height: 68px; }
 
     header h1 {
@@ -183,7 +180,6 @@
 
     textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 
-    /* Checkbox & Radio tiles */
     .tile-group {
       display: flex;
       flex-wrap: wrap;
@@ -229,7 +225,6 @@
       color: var(--gold);
     }
 
-    /* Acknowledgements */
     .ack-list {
       display: flex;
       flex-direction: column;
@@ -262,7 +257,6 @@
       line-height: 1.6;
     }
 
-    /* Submit */
     .submit-area {
       text-align: center;
       margin-top: 10px;
@@ -558,7 +552,7 @@
       </div>
     </div>
 
-    <!-- 4. Menu Preferences -->
+    <!-- 4. Menu & Experience -->
     <div class="section-card">
       <div class="section-head">
         <span class="icon">✦</span>
@@ -573,17 +567,6 @@
               <label><input type="checkbox" name="experience" value="Matcha Bar" /><span class="tile">Matcha Bar</span></label>
               <label><input type="checkbox" name="experience" value="Both Coffee & Matcha" /><span class="tile">Both Coffee & Matcha</span></label>
               <label><input type="checkbox" name="experience" value="Not sure yet" /><span class="tile">Not sure yet</span></label>
-            </div>
-          </div>
-        </div>
-        <div class="field-row full">
-          <div class="field">
-            <label class="field-label">Classic Drinks (select all desired)</label>
-            <div class="tile-group">
-              <label><input type="checkbox" name="menuClassic" value="Americano" /><span class="tile">Americano</span></label>
-              <label><input type="checkbox" name="menuClassic" value="Vanilla Latte" /><span class="tile">Vanilla Latte</span></label>
-              <label><input type="checkbox" name="menuClassic" value="Caramel Latte" /><span class="tile">Caramel Latte</span></label>
-              <label><input type="checkbox" name="menuClassic" value="Chocolate Latte" /><span class="tile">Chocolate Latte</span></label>
             </div>
           </div>
         </div>
@@ -609,10 +592,10 @@
           <div class="field">
             <label class="field-label">Optional Add-Ons (select all that interest you)</label>
             <div class="tile-group">
-              <label><input type="checkbox" name="addons" value="Custom Drink & Branded Menu (+$100)" /><span class="tile">Custom Drink & Branded Menu +$100</span></label>
-              <label><input type="checkbox" name="addons" value="Matcha Menu (+$300)" /><span class="tile">Matcha Menu +$300</span></label>
-              <label><input type="checkbox" name="addons" value="Edible Drink Toppers (+$0.50 each)" /><span class="tile">Edible Drink Toppers +$0.50 ea</span></label>
-              <label><input type="checkbox" name="addons" value="Custom Cart Signage (from +$150)" /><span class="tile">Custom Cart Signage from +$150</span></label>
+              <label><input type="checkbox" name="addons" value="Custom Drink & Branded Menu (+$100)" /><span class="tile">Custom Drink & Branded Menu</span></label>
+              <label><input type="checkbox" name="addons" value="Matcha Menu (+$300)" /><span class="tile">Matcha Menu</span></label>
+              <label><input type="checkbox" name="addons" value="Edible Drink Toppers (+$0.50 each)" /><span class="tile">Edible Drink Toppers</span></label>
+              <label><input type="checkbox" name="addons" value="Custom Cart Signage (from +$150)" /><span class="tile">Custom Cart Signage</span></label>
             </div>
           </div>
         </div>
@@ -709,19 +692,25 @@
 </footer>
 
 <script>
-  // Show company field for planners
   document.querySelectorAll('input[name="contactRole"]').forEach(r => {
     r.addEventListener('change', () => {
       document.getElementById('plannerOrgRow').style.display =
         r.value === 'Event Planner / Coordinator' ? 'grid' : 'none';
     });
   });
+
+  document.querySelectorAll('input[name="paymentBy"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('attendeePayRow').style.display =
+        r.value === 'Attendee Paid' ? 'grid' : 'none';
+    });
+  });
 </script>
-  <script>
+
+<script>
 document.getElementById("inquiryForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
-  // Check acknowledgements
   const acks = ['ack1','ack2','ack3','ack4'];
   for (const ack of acks) {
     if (!this[ack].checked) {
