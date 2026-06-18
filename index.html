@@ -224,6 +224,72 @@
       color: var(--gold);
     }
 
+    /* Addon cards */
+    .addon-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .addon-group label {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .addon-group input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .addon-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      background: var(--white);
+      transition: all 0.15s;
+      gap: 12px;
+    }
+
+    .addon-group input:checked + .addon-card {
+      background: var(--gold-pale);
+      border-color: var(--gold);
+    }
+
+    .addon-card:hover {
+      border-color: var(--gold-light);
+    }
+
+    .addon-card .addon-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .addon-card .addon-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-body);
+    }
+
+    .addon-card .addon-desc {
+      font-size: 0.74rem;
+      color: var(--mid);
+      font-style: italic;
+    }
+
+    .addon-card .addon-price {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
     .ack-list {
       display: flex;
       flex-direction: column;
@@ -513,15 +579,14 @@
         <div class="field-row full">
           <div class="field">
             <label class="field-label">Budget Range</label>
-            <select name="budget">
-              <option value="">Select a range</option>
-              <option>Under $1,000</option>
-              <option>$1,000 – $1,500</option>
-              <option>$1,500 – $2,000</option>
-              <option>$2,000 – $3,000</option>
-              <option>$3,000+</option>
-              <option>Flexible / Open</option>
-            </select>
+            <div class="tile-group">
+              <label><input type="radio" name="budget" value="Under $1,000" /><span class="tile">Under $1,000</span></label>
+              <label><input type="radio" name="budget" value="$1,000 – $1,500" /><span class="tile">$1,000 – $1,500</span></label>
+              <label><input type="radio" name="budget" value="$1,500 – $2,000" /><span class="tile">$1,500 – $2,000</span></label>
+              <label><input type="radio" name="budget" value="$2,000 – $3,000" /><span class="tile">$2,000 – $3,000</span></label>
+              <label><input type="radio" name="budget" value="$3,000+" /><span class="tile">$3,000+</span></label>
+              <label><input type="radio" name="budget" value="Flexible / Open" /><span class="tile">Flexible / Open</span></label>
+            </div>
           </div>
         </div>
         <div class="field-row full">
@@ -574,11 +639,57 @@
         <div class="field-row full">
           <div class="field">
             <label class="field-label">Optional Add-Ons (select all that interest you)</label>
-            <div class="tile-group">
-              <label><input type="checkbox" name="addons" value="Custom Drink & Branded Menu (+$100)" /><span class="tile">Custom Drink & Branded Menu</span></label>
-              <label><input type="checkbox" name="addons" value="Matcha Menu (+$300)" /><span class="tile">Matcha Menu</span></label>
-              <label><input type="checkbox" name="addons" value="Edible Drink Toppers (+$0.50 each)" /><span class="tile">Edible Drink Toppers</span></label>
-              <label><input type="checkbox" name="addons" value="Custom Cart Signage (from +$150)" /><span class="tile">Custom Cart Signage</span></label>
+            <div class="addon-group">
+              <label>
+                <input type="checkbox" name="addons" value="Custom Cup Branding – $75 (up to 100 guests)" />
+                <div class="addon-card">
+                  <div class="addon-left">
+                    <span class="addon-name">Custom Cup Branding</span>
+                    <span class="addon-desc">Personalized logo or event design applied to cups</span>
+                  </div>
+                  <span class="addon-price">$75 (up to 100 guests)</span>
+                </div>
+              </label>
+              <label>
+                <input type="checkbox" name="addons" value="Additional Branded Cups over 100 guests – $0.25 each" />
+                <div class="addon-card">
+                  <div class="addon-left">
+                    <span class="addon-name">Additional Branded Cups</span>
+                    <span class="addon-desc">For guest counts over 100</span>
+                  </div>
+                  <span class="addon-price">$0.25 each</span>
+                </div>
+              </label>
+              <label>
+                <input type="checkbox" name="addons" value="Custom Drink Toppers – $0.50 each" />
+                <div class="addon-card">
+                  <div class="addon-left">
+                    <span class="addon-name">Custom Drink Toppers</span>
+                    <span class="addon-desc">Edible logo, monogram, or custom design</span>
+                  </div>
+                  <span class="addon-price">$0.50 each</span>
+                </div>
+              </label>
+              <label>
+                <input type="checkbox" name="addons" value="Custom Cart Branding – $150" />
+                <div class="addon-card">
+                  <div class="addon-left">
+                    <span class="addon-name">Custom Cart Branding</span>
+                    <span class="addon-desc">Custom signage displayed on the coffee cart</span>
+                  </div>
+                  <span class="addon-price">$150</span>
+                </div>
+              </label>
+              <label>
+                <input type="checkbox" name="addons" value="Additional Service Hour – $100" />
+                <div class="addon-card">
+                  <div class="addon-left">
+                    <span class="addon-name">Additional Service Hour</span>
+                    <span class="addon-desc">Extend your service window by one hour</span>
+                  </div>
+                  <span class="addon-price">$100</span>
+                </div>
+              </label>
             </div>
           </div>
         </div>
